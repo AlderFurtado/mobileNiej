@@ -9,6 +9,7 @@ import TelaInicial from './src/components/TelaInicial';
 import TelaUsuario from './src/components/TelaUsuario';
 import ListaPacientes from './src/components/ListaPacientes';
 import PainelPaciente from './src/components/PainelPaciente';
+import FichaEnfermagemIdoso from './src/components/FichaEnfermagemIdoso'
 
 export default class App extends Component<{}> {
 
@@ -32,6 +33,7 @@ export default class App extends Component<{}> {
           <Scene key="telaUsuario" component={TelaUsuario} title="Usuario" hideNavBar/>      
           <Scene key="listaPacientes" component={ListaPacientes} title="Lista de Pacientes" hideNavBar/>
           <Scene key="painelPaciente" component={PainelPaciente} title="PainelPaciente" hideNavBar/>      
+          <Scene key="fichaEnfermagemIdoso" component={FichaEnfermagemIdoso} title="FichaEnfermagemIdoso" hideNavBar/>
         </Stack>
       </Router>
       );  

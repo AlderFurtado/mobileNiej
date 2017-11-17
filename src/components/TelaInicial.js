@@ -47,13 +47,13 @@ export default class TelaInicial extends Component<{}> {
 
   
   requisicaoIntegra(idToken) {
-       axios.get('http://54.233.242.207:8080/auth?idToken=' + idToken)
+      console.log('teste');
+       axios.get('http://ec2-54-207-86-56.sa-east-1.compute.amazonaws.com:8080/auth?idToken=' + idToken)
           .then((integra) => { 
             console.log(integra); 
             AsyncStorage.setItem('integra', JSON.stringify(integra));
-       	    this.avanca();
-          })
-          .catch((err) => {
+      	    this.avanca();
+          }).catch((err) => {
             alert('Não existe nenhum e-mail com esse nome cadastrado');
             this.deslogar();
             console.log(err);

@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
 
 	tituloContainer: {
 		flex: 2,
+		marginRight: 10,
 		alignItems: 'center',
 		justifyContent: 'center',
 		

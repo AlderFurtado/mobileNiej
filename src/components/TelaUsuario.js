@@ -11,6 +11,7 @@ import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import BarraNavegacao from './BarraNavegacao';
 
+const a59b83165247c522cd8c99fe6 = require('../imgs/LogoCrereSer.jpg');
 
 export default class TelaUsuario extends Component<{}> {
 	
@@ -33,11 +34,12 @@ export default class TelaUsuario extends Component<{}> {
 	requisicaoProjetos(token) {
     //requisição para ver todos os projetos
     const AuthStr = 'Bearer '.concat(token);
-    axios.get('http://54.233.242.207:8080/api/project', { headers: { Authorization: AuthStr } })
+    axios.get('http://ec2-54-207-86-56.sa-east-1.compute.amazonaws.com:8080/api/project', { headers: { Authorization: AuthStr } })
       .then(response => {         
             console.log(response.data);
             this.setState({ projetos: response.data });
             this.getMyProject(this.state.profile,this.state.projetos);
+
             this.setState({loaded: true});
           })
           .catch((error) => {
@@ -48,13 +50,18 @@ export default class TelaUsuario extends Component<{}> {
   	requisicaoMyProfile(token){
     //requisição para ver todos os projetos
     const AuthStr = 'Bearer '.concat(token);
-    axios.get('http://54.233.242.207:8080/api/profile/my', { headers: { Authorization: AuthStr } })
+    axios.get('http://ec2-54-207-86-56.sa-east-1.compute.amazonaws.com:8080/api/profile/my', { headers: { Authorization: AuthStr } })
       .then(response => {         
             console.log(response.data);
             this.setState({ profile: response.data });
             this.requisicaoProjetos(token);
-            
-            
+            AsyncStorage.setItem('profile',JSON.stringify(response.data));
+            AsyncStorage.getItem('profile')
+              .then((profile) => {
+                console.log(profile);
+              }).catch((err) => {
+
+              })
           })
           .catch((error) => {
             console.log('error ao recuperar profile ' + error);
@@ -83,8 +90,10 @@ export default class TelaUsuario extends Component<{}> {
   }
 
   avancar() {
-    Actions.listaPacientes();
+    Actions.fichaEnfermagemIdoso();
   }
+
+
 
 	render() {
     if (this.state.loaded) {
@@ -107,7 +116,7 @@ export default class TelaUsuario extends Component<{}> {
                 <Image
                 key={projeto._id} 
                 style={styles.logos}
-                source={{uri:'http://54.233.242.207:8080/'+projeto.logo}}
+                source={a59b83165247c522cd8c99fe6}
                 />
                 </TouchableOpacity>
                 );
